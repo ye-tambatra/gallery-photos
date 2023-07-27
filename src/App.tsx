@@ -1,5 +1,6 @@
-import Gallery from "./components/Gallery";
+// import Gallery from "./components/Gallery";
 import History from "./components/History";
+import NoResult from "./components/NoResult";
 import SearchBar from "./components/SearchBar";
 
 function App() {
@@ -13,7 +14,8 @@ function App() {
       <main className="py-7 mx-5 md:container md:mx-auto">
         <History />
         <div className="h-[1px] bg-gray-300"></div>
-        <Gallery />
+        {/* <Gallery /> */}
+        <NoResult />
       </main>
     </>
   );
