@@ -13,8 +13,7 @@ function App() {
   const [lastSearch, setLastSearch] = useState("");
   const history = useHistory((state) => state);
   const gallery = useGallery((state) => state);
-  const { data, fetchData, isLoading, hasError } =
-    useFetch<SearchResult>(searchPhotos);
+  const { data, fetchData, isLoading } = useFetch<SearchResult>(searchPhotos);
 
   function handleSearchBarSubmit(query: string) {
     fetchData(query);
