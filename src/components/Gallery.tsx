@@ -1,12 +1,24 @@
+import { Photo as IPhoto } from "../types";
+import NoResult from "./NoResult";
 import Photo from "./Photo";
 
-function Gallery() {
+type Props = {
+  items: IPhoto[];
+  query: string;
+};
+function Gallery(props: Props) {
+  if (props.items.length === 0) {
+    return <NoResult query={props.query} />;
+  }
+
   return (
     <>
-      <h4 className="text-center text-3xl my-10">Search results for "Car"</h4>
-      <div className="my-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-        {[0, 0, 0, 0, 0, 0, 0, 0].map((_, index) => (
-          <Photo key={index} />
+      <h4 className="text-center text-3xl my-10">
+        Search results for "{props.query}"
+      </h4>
+      <div className="my-7 columns-1 md:columns-2 lg:columns-4 gap-5">
+        {props.items.map((item, index) => (
+          <Photo key={index} item={item} />
         ))}
       </div>
     </>
