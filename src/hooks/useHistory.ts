@@ -7,12 +7,24 @@ type Store = {
   push: (item: string) => void;
 };
 const useHistory = create<Store>()((set) => ({
-  items: ["Car", "Bird", "Paris", "Flyers", "Bike"],
+  items: ["Car", "Bird", "Paris", "Flowers", "Bike"],
 
   push(item) {
     set((state) => {
-      const newHistory = [item, ...state.items];
-      if (newHistory.length > NUMBER_OF_HISTORY) newHistory.pop();
+      const index = state.items.findIndex(
+        (e) => e.toLocaleLowerCase() === item.toLocaleLowerCase()
+      );
+
+      let newHistory = [...state.items];
+
+      if (index === -1) {
+        newHistory.unshift(item);
+        if (newHistory.length > NUMBER_OF_HISTORY) newHistory.pop();
+      } else {
+        newHistory.splice(index, 1);
+        newHistory.unshift(item);
+      }
+
       return {
         items: newHistory,
       };
