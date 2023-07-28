@@ -1,5 +1,6 @@
 import { Photo as IPhoto } from "../types";
 import NoResult from "./NoResult";
+import NoSearch from "./NoSearch";
 import Photo from "./Photo";
 
 type Props = {
@@ -8,6 +9,10 @@ type Props = {
 };
 function Gallery(props: Props) {
   if (props.items.length === 0) {
+    if (props.query.length === 0) {
+      return <NoSearch />;
+    }
+
     return <NoResult query={props.query} />;
   }
 
