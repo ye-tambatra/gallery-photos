@@ -1,6 +1,4 @@
 import { Photo as IPhoto } from "../types";
-import NoResult from "./NoResult";
-import NoSearch from "./NoSearch";
 import Photo from "./Photo";
 
 type Props = {
