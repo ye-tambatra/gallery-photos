@@ -8,6 +8,8 @@ import { useHistory } from "./hooks/useHistory";
 import { searchPhotos } from "./services/api";
 import { SearchResult } from "./types";
 import LoadingGallery from "./components/LoadingGallery";
+import NoSearch from "./components/NoSearch";
+import NoResult from "./components/NoResult";
 
 function App() {
   const [lastSearch, setLastSearch] = useState("");
@@ -33,6 +35,23 @@ function App() {
     }
   }, [data]);
 
+  function renderMainContent() {
+    if (isLoading) {
+      return <LoadingGallery />;
+    }
+
+    if (gallery.items.length === 0) {
+      // The user did not search anything yet
+      if (lastSearch.length === 0) {
+        return <NoSearch />;
+      }
+      // The user searched but there is no result matching it
+      return <NoResult query={lastSearch} />;
+    }
+
+    return <Gallery items={gallery.items} query={lastSearch} />;
+  }
+
   return (
     <>
       <header className="py-10 bg-white flex flex-col items-center px-5 md:px-0">
@@ -46,11 +65,7 @@ function App() {
           handleHistoryItemClick={handleHistoryItemClick}
         />
         <div className="h-[1px] bg-gray-300"></div>
-        {isLoading ? (
-          <LoadingGallery />
-        ) : (
-          <Gallery items={gallery.items} query={lastSearch} />
-        )}
+        {renderMainContent()}
       </main>
     </>
   );
