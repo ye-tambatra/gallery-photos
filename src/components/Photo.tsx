@@ -4,7 +4,7 @@ type Props = {
   item: IPhoto;
 };
 function Photo(props: Props) {
-  const imageURL = props.item.urls.small_s3;
+  const imageURL = props.item.urls.small;
 
   return (
     <img
