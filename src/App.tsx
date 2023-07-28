@@ -21,6 +21,12 @@ function App() {
     setLastSearch(query);
   }
 
+  function handleHistoryItemClick(item: string) {
+    fetchData(item);
+    history.push(item);
+    setLastSearch(item);
+  }
+
   useEffect(() => {
     if (data !== undefined) {
       gallery.setItems(data.results);
@@ -35,7 +41,10 @@ function App() {
       </header>
 
       <main className="py-7 mx-5 md:container md:mx-auto">
-        <History history={history.items} />
+        <History
+          history={history.items}
+          handleHistoryItemClick={handleHistoryItemClick}
+        />
         <div className="h-[1px] bg-gray-300"></div>
         {isLoading ? (
           <LoadingGallery />
