@@ -10,23 +10,27 @@ import { SearchResult } from "./types";
 import LoadingGallery from "./components/LoadingGallery";
 import NoSearch from "./components/NoSearch";
 import NoResult from "./components/NoResult";
+import Error from "./components/Error";
 
 function App() {
   const [lastSearch, setLastSearch] = useState("");
   const history = useHistory((state) => state);
   const gallery = useGallery((state) => state);
-  const { data, fetchData, isLoading } = useFetch<SearchResult>(searchPhotos);
+  const { data, fetchData, isLoading, hasError } =
+    useFetch<SearchResult>(searchPhotos);
 
-  function handleSearchBarSubmit(query: string) {
+  function runSearch(query: string) {
     fetchData(query);
     history.push(query);
     setLastSearch(query);
   }
 
+  function handleSearchBarSubmit(query: string) {
+    runSearch(query);
+  }
+
   function handleHistoryItemClick(item: string) {
-    fetchData(item);
-    history.push(item);
-    setLastSearch(item);
+    runSearch(item);
   }
 
   useEffect(() => {
@@ -36,6 +40,10 @@ function App() {
   }, [data]);
 
   function renderMainContent() {
+    if (hasError) {
+      return <Error />;
+    }
+
     if (isLoading) {
       return <LoadingGallery />;
     }
@@ -55,7 +63,9 @@ function App() {
   return (
     <>
       <header className="py-10 bg-white flex flex-col items-center px-5 md:px-0">
-        <h1 className="text-4xl mt-10 text-center">WELCOME TO MY GALLERY</h1>
+        <h1 className="text-4xl mt-10 text-center">
+          WELCOME TO MY <span className="text-blue-500">PHOTO SEARCH APP</span>
+        </h1>
         <SearchBar handleSearchBarSubmit={handleSearchBarSubmit} />
       </header>
 

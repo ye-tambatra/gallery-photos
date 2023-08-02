@@ -2,9 +2,9 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRef } from "react";
 
-type Props = {
+interface Props {
   handleSearchBarSubmit: (query: string) => void;
-};
+}
 function SearchBar(props: Props) {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
