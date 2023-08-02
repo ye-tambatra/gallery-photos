@@ -1,27 +1,24 @@
-# React + TypeScript + Vite
+# Photo Search App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Table of Contents
 
-Currently, two official plugins are available:
+- [About](#about)
+- [Demo](#demo)
+- [Technologies Used](#technologies-used)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## About
 
-## Expanding the ESLint configuration
+Photo Search App is a web application built with React JS that allows users to search for photos based on keywords. It utilizes the Unsplash API to fetch relevant images and display them in a visually appealing way. The project is implemented with TypeScript for type safety and Tailwind CSS for responsive and customizable styling.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Demo
 
-- Configure the top-level `parserOptions` property like this:
+Here is the link where you can check the demo of the app  
+ [https://photo-search-app.vercel.app/](https://photo-search-app.vercel.app/)
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+## Technologies Used
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- TypeScript: TypeScript is a statically typed superset of JavaScript that adds type annotations to the code, helping catch type-related errors during development and improving overall code quality.
+
+- React JS: React is a popular JavaScript library for building user interfaces. It enables the creation of reusable UI components and efficiently manages the application's state.
+
+- Tailwind CSS: Tailwind CSS is a utility-first CSS framework that provides a set of pre-built styles and classes, making it easy to design responsive and custom UI components.
