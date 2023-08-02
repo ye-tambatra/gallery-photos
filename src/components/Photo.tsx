@@ -1,8 +1,8 @@
 import { Photo as IPhoto } from "../types";
 
-type Props = {
+interface Props {
   item: IPhoto;
-};
+}
 function Photo(props: Props) {
   const imageURL = props.item.urls.small;
 
@@ -10,7 +10,7 @@ function Photo(props: Props) {
     <img
       alt="Photo"
       src={imageURL}
-      className="bg-gray-300 h-auto w-full object-cover mb-5 shadow-md"
+      className="bg-gray-300 h-auto w-full object-cover mb-5 rounded-sm"
     />
   );
 }
