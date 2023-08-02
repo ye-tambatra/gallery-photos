@@ -63,8 +63,9 @@ function App() {
   return (
     <>
       <header className="py-10 bg-white flex flex-col items-center px-5 md:px-0">
-        <h1 className="text-4xl mt-10 text-center">
-          WELCOME TO MY <span className="text-blue-500">PHOTO SEARCH APP</span>
+        <h1 className="text-5xl mt-10 text-center">
+          Welcome to my
+          <span className="text-blue-500"> Photo search app</span>
         </h1>
         <SearchBar handleSearchBarSubmit={handleSearchBarSubmit} />
       </header>
