@@ -12,8 +12,8 @@ Photo Search App is a web application built with React JS that allows users to s
 
 ## Demo
 
-Here is the link where you can check the demo of the app  
- [https://photo-search-app.vercel.app/](https://photo-search-app.vercel.app/)
+Here is the link where you can check the demo of the app :   
+## [https://photo-search-app-tambatra.vercel.app/](https://photo-search-app-tambatra.vercel.app/)
 
 ## Technologies Used
 
