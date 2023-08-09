@@ -13,73 +13,73 @@ import NoResult from "./components/NoResult";
 import Error from "./components/Error";
 
 function App() {
-  const [lastSearch, setLastSearch] = useState("");
-  const history = useHistory((state) => state);
-  const gallery = useGallery((state) => state);
-  const { data, fetchData, isLoading, hasError } =
-    useFetch<SearchResult>(searchPhotos);
+    const [lastSearch, setLastSearch] = useState("");
+    const history = useHistory((state) => state);
+    const gallery = useGallery((state) => state);
+    const { data, fetchData, isLoading, hasError } =
+        useFetch<SearchResult>(searchPhotos);
 
-  function runSearch(query: string) {
-    fetchData(query);
-    history.push(query);
-    setLastSearch(query);
-  }
-
-  function handleSearchBarSubmit(query: string) {
-    runSearch(query);
-  }
-
-  function handleHistoryItemClick(item: string) {
-    runSearch(item);
-  }
-
-  useEffect(() => {
-    if (data !== undefined) {
-      gallery.setItems(data.results);
-    }
-  }, [data]);
-
-  function renderMainContent() {
-    if (hasError) {
-      return <Error />;
+    function runSearch(query: string) {
+        fetchData(query);
+        history.push(query);
+        setLastSearch(query);
     }
 
-    if (isLoading) {
-      return <LoadingGallery />;
+    function handleSearchBarSubmit(query: string) {
+        runSearch(query);
     }
 
-    if (gallery.items.length === 0) {
-      // The user did not search anything yet
-      if (lastSearch.length === 0) {
-        return <NoSearch />;
-      }
-      // The user searched but there is no result matching it
-      return <NoResult query={lastSearch} />;
+    function handleHistoryItemClick(item: string) {
+        runSearch(item);
     }
 
-    return <Gallery items={gallery.items} query={lastSearch} />;
-  }
+    useEffect(() => {
+        if (data !== undefined) {
+            gallery.setItems(data.results);
+        }
+    }, [data]);
 
-  return (
-    <>
-      <header className="py-10 bg-white flex flex-col items-center px-5 md:px-0">
-        <h1 className="text-5xl mt-10 text-center">
-          Welcome to my
-          <span className="text-blue-500"> Photo search app</span>
-        </h1>
-        <SearchBar handleSearchBarSubmit={handleSearchBarSubmit} />
-      </header>
+    function renderMainContent() {
+        if (hasError) {
+            return <Error />;
+        }
 
-      <main className="py-7 mx-5 md:container md:mx-auto">
-        <History
-          history={history.items}
-          handleHistoryItemClick={handleHistoryItemClick}
-        />
-        <div className="h-[1px] bg-gray-300"></div>
-        {renderMainContent()}
-      </main>
-    </>
-  );
+        if (isLoading) {
+            return <LoadingGallery />;
+        }
+
+        if (gallery.items.length === 0) {
+            // The user did not search anything yet
+            if (lastSearch.length === 0) {
+                return <NoSearch />;
+            }
+            // The user searched but there is no result matching it
+            return <NoResult query={lastSearch} />;
+        }
+
+        return <Gallery items={gallery.items} query={lastSearch} />;
+    }
+
+    return (
+        <>
+            <header className="py-10 bg-white flex flex-col items-center px-5 md:px-0">
+                <h1 className="text-5xl mt-10 text-center">
+                    Welcome to my
+                    <span className="text-blue-500"> Photo search app</span>
+                </h1>
+                <SearchBar handleSearchBarSubmit={handleSearchBarSubmit} />
+            </header>
+
+            <main className="py-7 mx-5 md:container md:mx-auto">
+                <History
+                    history={history.items}
+                    handleHistoryItemClick={handleHistoryItemClick}
+                />
+                <div className="h-[1px] bg-gray-300"></div>
+                {renderMainContent()}
+            </main>
+        </>
+    );
 }
 
 export default App;
